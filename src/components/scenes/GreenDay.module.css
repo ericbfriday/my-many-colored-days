@@ -1,0 +1,112 @@
+@keyframes swim {
+    0% {
+        transform: translateX(-100px) rotate(0deg);
+    }
+    48% {
+        transform: translateX(110vw) rotate(0deg);
+    }
+    50% {
+        transform: translateX(110vw) rotateY(180deg);
+    }
+    98% {
+        transform: translateX(-100px) rotateY(180deg);
+    }
+    100% {
+        transform: translateX(-100px) rotateY(0deg);
+    }
+}
+
+@keyframes sway {
+    0%,
+    100% {
+        transform: rotate(5deg);
+    }
+    50% {
+        transform: rotate(-5deg);
+    }
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+.fish {
+    width: 100px;
+    height: 50px;
+    background: #ff6b6b;
+    border-radius: 50%;
+    position: absolute;
+    top: 40%;
+    animation: swim 15s linear infinite;
+    animation-delay: 2s;
+}
+
+.seaweed {
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 200px;
+    background: #4caf50;
+    border-radius: 10px 10px 0 0;
+    transform-origin: bottom center;
+    animation: sway 5s infinite ease-in-out;
+}
+.seaweed1 {
+    left: 20%;
+    height: 250px;
+    animation-duration: 6s;
+}
+.seaweed2 {
+    left: 80%;
+    height: 180px;
+    animation-duration: 4s;
+}
+
+.bubble {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: rise 10s linear infinite;
+}
+.bubble1 {
+    left: 25%;
+    width: 20px;
+    height: 20px;
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+.bubble2 {
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    animation-duration: 12s;
+}
+.bubble3 {
+    left: 75%;
+    width: 25px;
+    height: 25px;
+    animation-duration: 6s;
+    animation-delay: 2s;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

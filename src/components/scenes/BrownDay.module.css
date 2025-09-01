@@ -1,0 +1,37 @@
+@keyframes ooze {
+    0% {
+        transform: translateX(-100vw) scaleX(1);
+        border-radius: 40% 60% 40% 60% / 50% 50% 50% 50%;
+    }
+    50% {
+        border-radius: 60% 40% 60% 40% / 50% 50% 50% 50%;
+    }
+    100% {
+        transform: translateX(100vw) scaleX(1.2);
+        border-radius: 40% 60% 40% 60% / 50% 50% 50% 50%;
+    }
+}
+
+.blob {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    height: 80px;
+    background: #5c2e00; /* Darker brown */
+    animation: ooze 20s linear infinite;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

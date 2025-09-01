@@ -1,0 +1,59 @@
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+@keyframes wobble {
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(-5deg);
+    }
+    75% {
+        transform: rotate(5deg);
+    }
+}
+
+.circusSeal {
+    width: 120px;
+    height: 150px;
+    background: #4a4a4a;
+    border-radius: 50% 50% 20% 20%;
+    position: absolute;
+    bottom: 30%;
+    animation: wobble 2s infinite ease-in-out;
+    animation-delay: 1.5s;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #ffd700, #ff6347);
+    border-radius: 50%;
+    position: absolute;
+    top: -60px;
+    left: 35px;
+    animation: bounce 1.5s infinite ease-in-out;
+    animation-delay: 1.5s;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

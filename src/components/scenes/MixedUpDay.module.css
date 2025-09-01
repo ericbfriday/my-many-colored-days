@@ -1,0 +1,70 @@
+@keyframes tumble {
+    from {
+        transform: rotate(0deg) scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(1080deg) scale(1.5);
+        opacity: 1;
+    }
+}
+
+.shape {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    animation: tumble 1.5s ease-out forwards;
+    animation-delay: 1s; /* Start after WHAM! */
+    mix-blend-mode: screen;
+}
+
+.red {
+    top: 20%;
+    left: 15%;
+    background: #d92626;
+    animation-delay: 1s;
+}
+.blue {
+    top: 20%;
+    right: 15%;
+    background: #0077ff;
+    animation-delay: 1.1s;
+}
+.green {
+    top: 50%;
+    left: 30%;
+    background: #006a4e;
+    animation-delay: 1.2s;
+}
+.yellow {
+    top: 50%;
+    right: 30%;
+    background: #ffdd00;
+    animation-delay: 1.3s;
+}
+.purple {
+    bottom: 10%;
+    left: 45%;
+    background: #4b0082;
+    animation-delay: 1.4s;
+}
+.orange {
+    bottom: 10%;
+    right: 45%;
+    background: #ff7f00;
+    animation-delay: 1.5s;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

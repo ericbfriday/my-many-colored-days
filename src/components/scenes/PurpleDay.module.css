@@ -1,0 +1,31 @@
+@keyframes plod {
+    from {
+        transform: translateX(-100vw);
+    }
+    to {
+        transform: translateX(100vw);
+    }
+}
+
+.creature {
+    width: 100px;
+    height: 80px;
+    background: #300052;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: 20%;
+    animation: plod 25s linear infinite;
+    animation-delay: 2s;
+}
+
+.tail {
+    width: 150px;
+    height: 20px;
+    background: #300052;
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    right: 90px;
+    bottom: 0;
+    transform-origin: right;
+    transform: rotate(5deg);
+}

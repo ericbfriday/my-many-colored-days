@@ -1,0 +1,70 @@
+@keyframes coalesce {
+    from {
+        transform: rotate(0deg) translateX(150px) rotate(0deg) scale(1.5);
+        opacity: 0.7;
+    }
+    to {
+        transform: rotate(360deg) translateX(0) rotate(-360deg) scale(0);
+        opacity: 0;
+    }
+}
+
+.swirlContainer {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+.swirl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    mix-blend-mode: screen;
+    animation: coalesce 4s infinite linear;
+}
+
+.red {
+    background: #d92626;
+    animation-delay: 0s;
+}
+.blue {
+    background: #0077ff;
+    animation-delay: -0.5s;
+}
+.green {
+    background: #006a4e;
+    animation-delay: -1s;
+}
+.yellow {
+    background: #ffdd00;
+    animation-delay: -1.5s;
+}
+.purple {
+    background: #4b0082;
+    animation-delay: -2s;
+}
+.orange {
+    background: #ff7f00;
+    animation-delay: -2.5s;
+}
+.pink {
+    background: #ffc0cb;
+    animation-delay: -3s;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

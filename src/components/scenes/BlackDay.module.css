@@ -1,0 +1,72 @@
+@keyframes flash {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    5%,
+    50% {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-5px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.scene {
+    width: 100%;
+    height: 100%;
+    animation: shake 0.5s linear infinite;
+    animation-delay: 1.5s;
+}
+
+.lightning {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 5px;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    animation: flash 3s linear infinite;
+}
+
+.bolt1 {
+    transform: skewX(-20deg);
+    animation-delay: 1.6s;
+}
+.bolt2 {
+    transform: skewX(20deg);
+    left: 40%;
+    animation-delay: 1.65s;
+}
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}

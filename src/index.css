@@ -1,0 +1,16 @@
+/* A simple CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevents scrollbars */
+    font-family: sans-serif;
+    background-color: #f0f0f0; /* A neutral background */
+}
