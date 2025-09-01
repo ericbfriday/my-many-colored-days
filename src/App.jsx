@@ -2,6 +2,7 @@ import React from "react";
 import { usePageStore } from "./store/usePageStore";
 import Navigation from "./components/Navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 
 // --- Import ALL scene components ---
 import Intro from "./components/scenes/Intro";
@@ -79,6 +80,7 @@ function App() {
       </AnimatePresence>
 
       <Navigation />
+      <Analytics />
     </>
   );
 }
