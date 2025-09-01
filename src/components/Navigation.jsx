@@ -1,33 +1,17 @@
 import React from "react";
 import { usePageStore } from "../store/usePageStore";
-
-// Basic styling for the navigation buttons
-const navStyles = {
-  position: "fixed",
-  bottom: "20px",
-  left: "50%",
-  transform: "translateX(-50%)",
-  zIndex: 100,
-  display: "flex",
-  gap: "1rem",
-};
-
-const buttonStyles = {
-  padding: "10px 20px",
-  fontSize: "16px",
-  cursor: "pointer",
-};
+import styles from "./Navigation.module.css"; // Import the CSS module
 
 export default function Navigation() {
-  // Use the actions from our Zustand store
   const { nextPage, previousPage } = usePageStore();
 
   return (
-    <div style={navStyles}>
-      <button style={buttonStyles} onClick={previousPage}>
+    // Use className instead of inline styles
+    <div className={styles.navContainer}>
+      <button className={styles.navButton} onClick={previousPage}>
         Previous
       </button>
-      <button style={buttonStyles} onClick={nextPage}>
+      <button className={styles.navButton} onClick={nextPage}>
         Next
       </button>
     </div>

@@ -1,0 +1,52 @@
+.navContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Increased z-index to be safe */
+    display: flex;
+    gap: 1rem;
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.1
+    ); /* Subtle background for better visibility */
+    backdrop-filter: blur(5px);
+    padding: 0.5rem;
+    border-radius: 12px;
+}
+
+.navButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.navButton:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* --- Responsive Styles for Mobile --- */
+@media (max-width: 768px) {
+    .navContainer {
+        /* Adjust position to account for mobile browser UI */
+        bottom: 15px;
+        width: 90%; /* Ensure it doesn't overflow */
+        justify-content: space-between; /* Spread buttons apart */
+        gap: 0.5rem;
+    }
+
+    .navButton {
+        /* Make buttons smaller and take up available space */
+        flex-grow: 1;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+}
