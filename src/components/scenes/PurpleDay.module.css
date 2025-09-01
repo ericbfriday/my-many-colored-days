@@ -29,3 +29,18 @@
     transform-origin: right;
     transform: rotate(5deg);
 }
+
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .titleText {
+        font-size: 1.8rem;
+    }
+    .wing {
+        width: 100px;
+        height: 30px;
+    }
+}
