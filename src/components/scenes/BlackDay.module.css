@@ -1,71 +1,321 @@
-@keyframes flash {
-    0%,
-    100% {
-        opacity: 0;
-    }
-    5%,
-    50% {
-        opacity: 1;
-    }
-}
-
-@keyframes shake {
-    0%,
-    100% {
-        transform: translateX(0);
-    }
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-        transform: translateX(-5px);
-    }
-    20%,
-    40%,
-    60%,
-    80% {
-        transform: translateX(5px);
-    }
-}
-
-.scene {
-    width: 100%;
-    height: 100%;
-    animation: shake 0.5s linear infinite;
-    animation-delay: 1.5s;
-}
-
-.lightning {
+/* Storm Atmosphere */
+.sceneContainer {
     position: absolute;
     top: 0;
-    left: 50%;
-    width: 5px;
+    left: 0;
+    width: 100%;
     height: 100%;
-    background: white;
+    overflow: hidden;
+    background: linear-gradient(180deg, #09090b 0%, #161a1d 100%);
+    z-index: 1;
+    user-select: none;
+}
+
+/* Strobe Lightning Screen Flash */
+.lightningFlash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
     opacity: 0;
-    animation: flash 3s linear infinite;
+    pointer-events: none;
+    z-index: 99;
 }
 
-.bolt1 {
-    transform: skewX(-20deg);
-    animation-delay: 1.6s;
+.flashActive {
+    animation: flashScreen 0.4s ease-out forwards;
 }
-.bolt2 {
-    transform: skewX(20deg);
-    left: 40%;
-    animation-delay: 1.65s;
+
+@keyframes flashScreen {
+    0% { opacity: 0; }
+    10% { opacity: 0.95; }
+    20% { opacity: 0.45; }
+    30% { opacity: 0.98; }
+    100% { opacity: 0; }
 }
+
+/* Shake Wrapper (decays quickly on action) */
+.shakeWrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.shakeActive {
+    animation: dramaticShake 0.45s ease-out forwards;
+}
+
+@keyframes dramaticShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    10% { transform: translate(-8px, 4px) rotate(-1deg); }
+    20% { transform: translate(6px, -6px) rotate(1deg); }
+    30% { transform: translate(-5px, 2px) rotate(-0.5deg); }
+    40% { transform: translate(4px, -3px) rotate(0.5deg); }
+    50% { transform: translate(-3px, 1px) rotate(-0.2deg); }
+    60% { transform: translate(2px, -1px) rotate(0.1deg); }
+    80% { transform: translate(-1px, 0.5px) rotate(0deg); }
+}
+
+/* Title text & Typography highlight */
 .titleText {
-    font-size: 3rem;
-    font-weight: bold;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    margin-top: 10vh;
+    padding: 0 2rem;
+    line-height: 1.4;
+    pointer-events: none;
+    position: relative;
+    z-index: 15;
 }
 
+.highlightWord {
+    display: inline-block;
+    font-weight: 900;
+    margin: 0 4px;
+    letter-spacing: 1px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.2s ease;
+}
+
+.madWord {
+    color: #ff3b30;
+    text-shadow: 0 0 10px rgba(255, 59, 48, 0.3);
+}
+
+.loudWord {
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+}
+
+.shakeWord {
+    animation: wordShake 0.4s infinite;
+}
+
+.glowWord {
+    animation: wordGlow 0.4s infinite alternate;
+}
+
+@keyframes wordShake {
+    0%, 100% { transform: rotate(0deg) scale(1.15); }
+    25% { transform: rotate(-4deg) scale(1.2); }
+    75% { transform: rotate(4deg) scale(1.2); }
+}
+
+@keyframes wordGlow {
+    0% {
+        text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+        transform: scale(1.15);
+    }
+    100% {
+        text-shadow: 0 0 28px rgba(255, 204, 0, 1);
+        transform: scale(1.25);
+    }
+}
+
+/* Rain Overlay */
+.rainLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.15;
+}
+
+/* Storm Clouds */
+.cloud {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.85;
+    fill: #1e1e24;
+    stroke: #2d3142;
+    stroke-width: 1.5;
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.7));
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.cloud:hover {
+    transform: scale(1.06);
+    opacity: 1;
+}
+
+.cloud1 {
+    top: 15%;
+    left: 10%;
+    width: 200px;
+    animation: floatCloud1 14s infinite ease-in-out;
+}
+.cloud2 {
+    top: 8%;
+    left: 45%;
+    width: 250px;
+    animation: floatCloud2 18s infinite ease-in-out;
+}
+.cloud3 {
+    top: 18%;
+    left: 72%;
+    width: 180px;
+    animation: floatCloud3 16s infinite ease-in-out;
+}
+
+@keyframes floatCloud1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-7px) translateX(10px); }
+}
+@keyframes floatCloud2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(9px) translateX(-12px); }
+}
+@keyframes floatCloud3 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-6px) translateX(-8px); }
+}
+
+/* Jagged Lightning SVGs */
+.lightningBoltContainer {
+    position: absolute;
+    top: 12%;
+    height: 72%;
+    pointer-events: none;
+    z-index: 12;
+    width: 180px;
+}
+
+.lightningPath {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 4.5px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 25px rgba(187, 134, 252, 0.55));
+}
+
+/* Spiky Wolf Rig */
+.wolfContainer {
+    position: absolute;
+    bottom: 0px;
+    left: 20%;
+    width: 280px;
+    height: 280px;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.wolfInteractive {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+}
+
+.wolfSvg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.75));
+}
+
+/* Wolf breathing and head animations */
+.wolfChest {
+    transform-origin: 100px 160px;
+    animation: chestHeave 3.2s infinite ease-in-out;
+}
+
+@keyframes chestHeave {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05) translate(3px, -1px); }
+}
+
+.wolfHead {
+    transform-origin: 125px 95px;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wolfHeadHowling {
+    transform: rotate(-35deg) translate(-8px, -14px);
+}
+
+.wolfJaw {
+    transform-origin: 135px 90px;
+    transition: transform 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wolfJawHowling {
+    transform: rotate(35deg) translate(6px, 5px);
+}
+
+/* Cliff Silhouette */
+.cliff {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 80px;
+    fill: #0d0d11;
+    z-index: 4;
+    filter: drop-shadow(5px 0 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Soundwaves expanding */
+.soundwave {
+    position: absolute;
+    border: 3px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 8;
+    box-shadow: 
+        0 0 12px rgba(255, 255, 255, 0.45),
+        inset 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Rain Drops list inside scene */
+.rainDrop {
+    position: absolute;
+    width: 1.5px;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    animation: fallDown linear infinite;
+    z-index: 2;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(-120px) rotate(-15deg);
+    }
+    100% {
+        transform: translateY(110vh) rotate(-15deg);
+    }
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
     .titleText {
         font-size: 1.8rem;
+        margin-top: 8vh;
     }
-    .lightning {
-        width: 2px;
+    
+    .wolfContainer {
+        width: 200px;
+        height: 200px;
+        left: 10%;
     }
+    
+    .cliff {
+        width: 220px;
+        height: 60px;
+    }
+    
+    .cloud1 { width: 120px; }
+    .cloud2 { width: 150px; }
+    .cloud3 { width: 100px; }
 }
