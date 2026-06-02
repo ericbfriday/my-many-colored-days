@@ -63,8 +63,8 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
-        width: 100px;
-        height: 30px;
+    .shape {
+        width: 60px;
+        height: 60px;
     }
 }

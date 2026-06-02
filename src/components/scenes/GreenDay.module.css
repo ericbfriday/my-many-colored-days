@@ -105,8 +105,10 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
-        width: 100px;
+    .fish {
+        width: 60px;
         height: 30px;
     }
+    .seaweed1 { height: 180px; width: 15px; }
+    .seaweed2 { height: 130px; width: 15px; }
 }

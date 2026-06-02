@@ -52,8 +52,15 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
-        width: 100px;
-        height: 30px;
+    .circusSeal {
+        width: 80px;
+        height: 100px;
+        bottom: 25%;
+    }
+    .ball {
+        width: 35px;
+        height: 35px;
+        top: -45px;
+        left: 22px;
     }
 }

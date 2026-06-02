@@ -39,8 +39,13 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
+    .creature {
+        width: 70px;
+        height: 55px;
+    }
+    .tail {
         width: 100px;
-        height: 30px;
+        height: 15px;
+        right: 60px;
     }
 }

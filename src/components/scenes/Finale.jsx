@@ -12,7 +12,7 @@ export default function Finale() {
     <Page backgroundColor="#f0f0f0">
       <AnimatedText text={text} style={{ color: "#333", zIndex: 10 }} />
       <div className={styles.swirlContainer}>
-        {colors.map((color, i) => (
+        {colors.map((color) => (
           <div key={color} className={`${styles.swirl} ${styles[color]}`}></div>
         ))}
       </div>

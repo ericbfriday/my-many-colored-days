@@ -30,8 +30,8 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
-        width: 100px;
-        height: 30px;
+    .blob {
+        width: 150px;
+        height: 60px;
     }
 }

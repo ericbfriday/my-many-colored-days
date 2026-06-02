@@ -69,6 +69,6 @@
     .splotch {
         width: 150px;
         height: 150px;
-        filter: blur(30px);
+        filter: blur(20px);
     }
 }

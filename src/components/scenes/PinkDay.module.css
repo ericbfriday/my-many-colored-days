@@ -73,6 +73,30 @@
     background: #db7093;
     animation-delay: 1.2s;
 }
+.shape8 {
+    bottom: 0;
+    left: 15%;
+    width: 50px;
+    height: 50px;
+    background: #c71585;
+    animation-delay: 1.4s;
+}
+.shape9 {
+    bottom: 0;
+    left: 45%;
+    width: 40px;
+    height: 40px;
+    background: #ff69b4;
+    animation-delay: 1.6s;
+}
+.shape10 {
+    bottom: 0;
+    left: 75%;
+    width: 60px;
+    height: 60px;
+    background: #ff1493;
+    animation-delay: 1.8s;
+}
 
 .titleText {
     font-size: 3rem;
@@ -83,8 +107,8 @@
     .titleText {
         font-size: 1.8rem;
     }
-    .wing {
-        width: 100px;
-        height: 30px;
+    .shape {
+        transform: scale(0.6);
+        transform-origin: bottom;
     }
 }

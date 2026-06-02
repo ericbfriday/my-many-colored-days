@@ -1,6 +1,7 @@
 import React from "react";
 import { usePageStore } from "./store/usePageStore";
 import Navigation from "./components/Navigation";
+// eslint-disable-next-line no-unused-vars
 import { AnimatePresence, motion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 
