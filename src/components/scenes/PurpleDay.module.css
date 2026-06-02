@@ -1,51 +1,296 @@
-@keyframes plod {
-    from {
-        transform: translateX(-100vw);
+/* Melancholic Purple Atmosphere */
+.sceneContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Vignette Overlay */
+.vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 35%, rgba(15, 0, 30, 0.75) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Title text styles */
+.titleText {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+    margin-top: 10vh;
+    pointer-events: none;
+    position: relative;
+    z-index: 15;
+}
+
+/* Rain Environment */
+.rainDrop {
+    position: absolute;
+    width: 1.5px;
+    background: linear-gradient(
+        to bottom,
+        rgba(157, 78, 221, 0.45) 0%,
+        rgba(157, 78, 221, 0) 100%
+    );
+    pointer-events: none;
+    animation: fallDown linear infinite;
+}
+
+@keyframes fallDown {
+    0% {
+        transform: translateY(-120px) rotate(-15deg);
     }
-    to {
+    100% {
+        transform: translateY(110vh) rotate(-15deg);
+    }
+}
+
+/* Fog Atmosphere */
+.fogLayer {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    width: 200%;
+    height: 140px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(123, 44, 191, 0.12) 0%,
+        rgba(123, 44, 191, 0) 70%
+    );
+    pointer-events: none;
+    filter: blur(20px);
+}
+.fog1 {
+    animation: driftFog1 48s linear infinite;
+    z-index: 2;
+}
+.fog2 {
+    animation: driftFog2 65s linear infinite;
+    z-index: 12; /* Foreground fog, rolls over feet */
+    opacity: 0.8;
+}
+
+@keyframes driftFog1 {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-25%); }
+    100% { transform: translateX(0); }
+}
+@keyframes driftFog2 {
+    0% { transform: translateX(-40%); }
+    50% { transform: translateX(0); }
+    100% { transform: translateX(-40%); }
+}
+
+/* Ground Line */
+.groundLine {
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(157, 78, 221, 0.25);
+    box-shadow: 0 0 8px rgba(157, 78, 221, 0.2);
+    z-index: 3;
+}
+
+/* Plodding Beast Rig and Walk Cycle */
+.creatureWalkContainer {
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    width: 240px;
+    height: 180px;
+    z-index: 5;
+    animation: plodAcross 28s linear infinite;
+    pointer-events: none;
+}
+
+.scaleWrapper {
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom center;
+}
+
+.creatureInteractive {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    pointer-events: auto;
+    position: relative;
+}
+
+.paused {
+    animation-play-state: paused !important;
+}
+
+@keyframes plodAcross {
+    0% {
+        transform: translateX(-260px);
+    }
+    100% {
         transform: translateX(100vw);
     }
 }
 
-.creature {
-    width: 100px;
-    height: 80px;
-    background: #300052;
-    border-radius: 50% 50% 0 0;
-    position: absolute;
-    bottom: 20%;
-    animation: plod 25s linear infinite;
-    animation-delay: 2s;
+.beastSvg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 12px rgba(10, 0, 20, 0.45));
 }
 
-.tail {
-    width: 150px;
-    height: 20px;
-    background: #300052;
-    border-radius: 10px 0 0 10px;
-    position: absolute;
-    right: 90px;
-    bottom: 0;
-    transform-origin: right;
-    transform: rotate(5deg);
+/* Head animations */
+.headGroup {
+    transform-origin: 180px 98px;
+    animation: headBob 4s infinite ease-in-out;
 }
 
-.titleText {
-    font-size: 3rem;
+@keyframes headBob {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(7deg) translateY(3px); }
+}
+
+.headGroupSlump {
+    transform-origin: 180px 98px;
+    animation: headSlump 3.5s ease-in-out forwards;
+}
+
+@keyframes headSlump {
+    0% { transform: rotate(0deg); }
+    22%, 75% { transform: rotate(18deg) translateY(12px); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Leg walk cycles */
+.legBackLeft {
+    transform-origin: 95px 125px;
+    animation: stepBackLeg 2.2s infinite ease-in-out;
+}
+.legBackRight {
+    transform-origin: 185px 125px;
+    animation: stepFrontLeg 2.2s infinite ease-in-out;
+}
+.legFrontLeft {
+    transform-origin: 85px 125px;
+    animation: stepBackLeg 2.2s infinite ease-in-out;
+}
+.legFrontRight {
+    transform-origin: 175px 125px;
+    animation: stepFrontLeg 2.2s infinite ease-in-out;
+}
+
+@keyframes stepFrontLeg {
+    0%, 100% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+}
+@keyframes stepBackLeg {
+    0%, 100% { transform: rotate(15deg); }
+    50% { transform: rotate(-15deg); }
+}
+
+/* Tail dragging animations */
+.tailSeg1 {
+    transform-origin: 65px 115px;
+    animation: dragSeg1 2.2s infinite ease-in-out;
+}
+.tailSeg2 {
+    transform-origin: 42px 127px;
+    animation: dragSeg2 2.2s infinite ease-in-out;
+    animation-delay: -0.3s;
+}
+.tailSeg3 {
+    transform-origin: 20px 142px;
+    animation: dragSeg3 2.2s infinite ease-in-out;
+    animation-delay: -0.6s;
+}
+
+@keyframes dragSeg1 {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+@keyframes dragSeg2 {
+    0%, 100% { transform: rotate(-6deg); }
+    50% { transform: rotate(6deg); }
+}
+@keyframes dragSeg3 {
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(8deg); }
+}
+
+/* Particles and Splash Details */
+.dustPuff {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(123, 44, 191, 0.28);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(2px);
+    z-index: 4;
+}
+
+.tear {
+    position: absolute;
+    pointer-events: none;
+    z-index: 8;
+}
+
+.ripple {
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    border: 1px solid rgba(157, 78, 221, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 4;
+}
+
+/* Interactive Speech Bubble */
+.speechBubble {
+    position: absolute;
+    top: 0px;
+    right: -25px;
+    background: #ffffff;
+    color: #4b0082;
+    padding: 0.5rem 0.9rem;
+    border-radius: 18px;
     font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 20;
+    pointer-events: none;
 }
 
+.speechBubble::after {
+    content: '';
+    position: absolute;
+    bottom: -7px;
+    left: 20%;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #ffffff;
+}
+
+/* Responsive Rules */
 @media (max-width: 768px) {
     .titleText {
         font-size: 1.8rem;
+        margin-top: 8vh;
     }
-    .creature {
-        width: 70px;
-        height: 55px;
-    }
-    .tail {
-        width: 100px;
-        height: 15px;
-        right: 60px;
+    
+    .scaleWrapper {
+        transform: scale(0.65);
     }
 }
