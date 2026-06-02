@@ -1,66 +1,195 @@
-@keyframes bounce {
-    0%,
-    100% {
-        transform: translateY(0) rotate(0);
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.titleText {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    color: #ffffff;
+    line-height: 1.35;
+    margin: 0;
+    max-width: 700px;
+    z-index: 2;
+}
+
+.sealScene {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.18));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.sealScene:hover {
+    transform: scale(1.03);
+}
+
+.sealScene:active {
+    transform: scale(0.98);
+}
+
+/* Near flipper clapping animation */
+.clappingFlipper {
+    animation: clap 0.15s infinite ease-in-out;
+    transform-origin: 190px 270px;
+}
+
+@keyframes clap {
+    0%, 100% {
+        transform: rotate(0deg);
     }
     50% {
-        transform: translateY(-30px) rotate(180deg);
+        transform: rotate(-35deg) translate(-5px, -5px);
     }
 }
 
-@keyframes wobble {
-    0%,
+/* Far flipper clapping animation */
+.clappingFarFlipper {
+    animation: clapFar 0.15s infinite ease-in-out;
+    transform-origin: 140px 270px;
+}
+
+@keyframes clapFar {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(25deg) translate(2px, -2px);
+    }
+}
+
+/* Speech Bubble styling */
+.speechBubble {
+    position: absolute;
+    top: 22%;
+    left: 65%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border-radius: 18px;
+    padding: 8px 14px;
+    color: #E53E3E;
+    font-weight: 900;
+    font-size: 1.1rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid #ffffff;
+    pointer-events: none;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: bottom left;
+}
+
+.speechBubble::after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 15px;
+    border-width: 9px 9px 0;
+    border-style: solid;
+    border-color: #ffffff transparent;
+    display: block;
+    width: 0;
+}
+
+/* Particle effect container */
+.particleContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Floating background stars/sparkles */
+.bgSparkle {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 1;
+    fill: #ffffff;
+    animation: floatUp 8s infinite linear;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(105vh) rotate(0deg) scale(0.6);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
     100% {
-        transform: rotate(0);
-    }
-    25% {
-        transform: rotate(-5deg);
-    }
-    75% {
-        transform: rotate(5deg);
+        transform: translateY(-10vh) rotate(360deg) scale(1.1);
+        opacity: 0;
     }
 }
 
-.circusSeal {
-    width: 120px;
-    height: 150px;
-    background: #4a4a4a;
-    border-radius: 50% 50% 20% 20%;
-    position: absolute;
-    bottom: 30%;
-    animation: wobble 2s infinite ease-in-out;
-    animation-delay: 1.5s;
-}
+.bgSparkle1 { left: 8%; animation-duration: 9s; animation-delay: 0s; }
+.bgSparkle2 { left: 22%; animation-duration: 13s; animation-delay: 2s; }
+.bgSparkle3 { left: 78%; animation-duration: 10s; animation-delay: 1.5s; }
+.bgSparkle4 { left: 90%; animation-duration: 12s; animation-delay: 4s; }
+.bgSparkle5 { left: 45%; animation-duration: 15s; animation-delay: 6s; }
 
-.ball {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(45deg, #ffd700, #ff6347);
-    border-radius: 50%;
-    position: absolute;
-    top: -60px;
-    left: 35px;
-    animation: bounce 1.5s infinite ease-in-out;
-    animation-delay: 1.5s;
-}
-.titleText {
-    font-size: 3rem;
-    font-weight: bold;
-}
-
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .container {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
     .titleText {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
-    .circusSeal {
-        width: 80px;
-        height: 100px;
-        bottom: 25%;
+    .sealScene {
+        max-width: 250px;
     }
-    .ball {
-        width: 35px;
-        height: 35px;
-        top: -45px;
-        left: 22px;
+    .speechBubble {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        top: 24%;
+        left: 64%;
+    }
+}
+
+@media (max-height: 600px) {
+    .container {
+        flex-direction: row;
+        gap: 2rem;
+    }
+    .titleText {
+        font-size: 1.6rem;
+        max-width: 300px;
+        text-align: left;
+    }
+    .sealScene {
+        max-width: 200px;
     }
 }

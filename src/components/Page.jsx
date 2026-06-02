@@ -3,7 +3,7 @@ import styles from "./Page.module.css";
 
 export default function Page({ children, backgroundColor }) {
   const pageStyle = {
-    backgroundColor: backgroundColor || "transparent",
+    background: backgroundColor || "transparent",
   };
 
   return (
