@@ -314,6 +314,14 @@ export default function GreenDay() {
                 width: `${b.size}px`,
                 height: `${b.size}px`,
               }}
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                handleBubblePop(b.id);
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleBubblePop(b.id);
+              }}
               onMouseEnter={() => handleBubblePop(b.id)}
                onAnimationEnd={() => {
                  // Remove when bubblePop keyframes finish

@@ -1,9 +1,77 @@
+.scene {
+    position: relative;
+    width: min(100vw, 900px);
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.focusArea {
+    position: relative;
+    width: clamp(180px, 28vw, 260px);
+    height: clamp(180px, 28vw, 260px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stillStone {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: radial-gradient(circle at 38% 35%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.02) 38%, rgba(0, 0, 0, 0.08) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 18px 36px rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.stoneCore {
+    position: absolute;
+    inset: 22%;
+    border-radius: 999px;
+    background: radial-gradient(circle at 40% 35%, rgba(250, 250, 250, 0.18), rgba(109, 109, 109, 0.32) 54%, rgba(73, 73, 73, 0.6) 100%);
+    transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.ring {
+    position: absolute;
+    inset: 12%;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 245, 245, 0.28);
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 80ms ease, transform 220ms ease;
+}
+
+.active .stoneCore {
+    transform: scale(0.97);
+    opacity: 0.94;
+}
+
+.active .ring {
+    opacity: 1;
+    transform: scale(1.08);
+}
+
 .titleText {
     font-size: 3rem;
     font-weight: bold;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 768px) {
+    .scene {
+        min-height: 460px;
+        gap: 1rem;
+    }
+
     .titleText {
         font-size: 1.8rem;
     }

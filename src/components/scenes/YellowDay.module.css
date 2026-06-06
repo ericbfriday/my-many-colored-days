@@ -1,3 +1,12 @@
+.scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+}
+
 @keyframes buzz {
     0%,
     100% {
@@ -34,19 +43,74 @@
     }
 }
 
+@keyframes effectBloom {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.35) rotate(-8deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.25) rotate(10deg);
+    }
+}
+
+@keyframes trailPulse {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    30% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.35);
+    }
+}
+
 .bee {
     position: absolute;
     animation:
         buzz 0.05s infinite,
         flyPath 8s linear infinite;
     animation-delay: 1s;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
+.beeTargeting {
+    animation: buzz 0.05s infinite;
+    transition:
+        left 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        top 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s ease;
+    transform: translate(-50%, -50%) rotate(-8deg) scale(1.05);
+}
+
+.beeTrail {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: -20px;
+    top: -12px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 245, 157, 0.55) 0%, rgba(255, 245, 157, 0) 72%);
+    opacity: 0;
+}
+
+.beeTargeting .beeTrail {
+    animation: trailPulse 0.9s ease-out infinite;
 }
 
 .beeBody {
     width: 40px;
     height: 25px;
-    background: #000;
-    border-radius: 50%;
+    background: linear-gradient(90deg, #1f2937 0 35%, #f8c400 35% 55%, #1f2937 55% 72%, #f8c400 72% 100%);
+    border-radius: 999px;
+    box-shadow: 0 6px 12px rgba(129, 92, 0, 0.25);
 }
 
 .beeWing1,
@@ -63,32 +127,137 @@
 .beeWing1 {
     left: 5px;
 }
+
 .beeWing2 {
     left: 20px;
 }
+
 .titleText {
     font-size: 3rem;
     font-weight: bold;
+    position: relative;
+    z-index: 4;
+    pointer-events: none;
+    margin-top: 10vh;
+    text-shadow: 0 3px 0 rgba(255, 255, 255, 0.15);
+}
+
+.effectLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.effect {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    transform: translate(-50%, -50%);
+    animation: effectBloom 1.4s ease-out forwards;
+}
+
+.effectCore,
+.effectPetalA,
+.effectPetalB,
+.effectPetalC,
+.effectPetalD {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+}
+
+.flower .effectCore {
+    inset: 18px;
+    background: #8b5a2b;
+    box-shadow: 0 0 0 4px rgba(255, 238, 88, 0.35);
+}
+
+.flower .effectPetalA,
+.flower .effectPetalB,
+.flower .effectPetalC,
+.flower .effectPetalD {
+    background: #fff6a3;
+}
+
+.flower .effectPetalA {
+    inset: 0 18px 30px;
+}
+
+.flower .effectPetalB {
+    inset: 30px 18px 0;
+}
+
+.flower .effectPetalC {
+    inset: 18px 30px 18px 0;
+}
+
+.flower .effectPetalD {
+    inset: 18px 0 18px 30px;
+}
+
+.pollen .effectCore {
+    inset: 20px;
+    background: rgba(255, 193, 7, 0.95);
+}
+
+.pollen .effectPetalA,
+.pollen .effectPetalB,
+.pollen .effectPetalC,
+.pollen .effectPetalD {
+    border: 2px solid rgba(255, 248, 196, 0.9);
+}
+
+.pollen .effectPetalA {
+    inset: 4px 22px 4px;
+}
+
+.pollen .effectPetalB {
+    inset: 22px 4px;
+}
+
+.pollen .effectPetalC {
+    inset: 10px 10px 26px;
+}
+
+.pollen .effectPetalD {
+    inset: 26px 10px 10px;
 }
 
 @media (max-width: 768px) {
     .titleText {
         font-size: 1.8rem;
+        margin-top: 8vh;
     }
+
     .beeBody {
         width: 30px;
         height: 20px;
     }
+
     .beeWing1,
     .beeWing2 {
         width: 12px;
         height: 20px;
         top: -8px;
     }
+
     .beeWing1 {
         left: 4px;
     }
+
     .beeWing2 {
         left: 15px;
+    }
+
+    .effect {
+        width: 42px;
+        height: 42px;
+    }
+
+    .beeTrail {
+        width: 36px;
+        height: 36px;
+        left: -14px;
+        top: -8px;
     }
 }
